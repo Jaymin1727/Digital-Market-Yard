@@ -119,7 +119,6 @@ const MyVehicle = () => {
                 onChange={handleChange}
                 placeholder="e.g. Truck A-101"
                 required
-                style={{color:"black"}}
               />
             </div>
 
@@ -192,10 +191,10 @@ const MyVehicle = () => {
                 <tbody>
                   {vehicles.map((v) => (
                     <tr key={v.id}>
-                      <td style={{color:"black"}}>{v.vehicleName}</td>
-                      <td style={{color:"black"}}>{v.vehicleType}</td>
-                      <td style={{color:"black"}}>{v.plateNumber || "—"}</td>
-                      <td style={{color:"black"}}>{v.capacity || "—"}</td>
+                      <td>{v.vehicleName}</td>
+                      <td>{v.vehicleType}</td>
+                      <td>{v.plateNumber || "—"}</td>
+                      <td>{v.capacity || "—"}</td>
                       <td>
                         <span style={{ color: v.status === "AVAILABLE" ? "green" : v.status === "BUSY" ? "orange" : "red", fontWeight: "bold" }}>
                           {v.status}

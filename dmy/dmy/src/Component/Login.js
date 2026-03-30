@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ParticlesBackground from "./ParticlesBackground";
+import logo from "../PNG/Logo.png";
+import handshakeImage from "../PNG/Farmer.png";
 import "../Style/Login.css";
-import logo from '../PNG/Logo.png';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -52,8 +52,6 @@ export const Login = () => {
 
     return (
         <div className="login-page-wrapper">
-            <ParticlesBackground />
-            <img src={logo} alt="F2M Logo" className="logo" />
             <div className="login-content-container">
                
 

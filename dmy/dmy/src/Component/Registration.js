@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from '../PNG/Logo.png'
+import farmer from '../PNG/Farmer.png'
 import '../Style/Registration.css';
-import ParticlesBackground from "./ParticlesBackground";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
@@ -50,9 +50,11 @@ export const Registration = () => {
 
     return (
         <div className="page">
-            <ParticlesBackground />
             <img src={logo} alt="F2M Logo" className="logo" />
-            <h1 className="RheaderL">Registration</h1>
+            <h1 className="headerL">Login / Registration</h1>
+            <img src={farmer} alt="Farmer" className="farmer" />
+            <p className="quote">For the farmer, by the farmer, with the farmer.</p>
+
             <form className="formL" onSubmit={onSubmit}>
 
                 <div className='role-section'>
