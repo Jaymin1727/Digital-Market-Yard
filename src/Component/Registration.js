@@ -1,3 +1,4 @@
+import API_BASE_URL from "../apiConfig";
 import React, { useState } from "react";
 import logo from '../PNG/Logo.png'
 import '../Style/Registration.css';
@@ -32,7 +33,7 @@ export const Registration = () => {
         }
 
         try {
-            await axios.post("http://localhost:8080/api/register", {
+            await axios.post(`${API_BASE_URL}/api/register`, {
                 role,
                 username,
                 email,

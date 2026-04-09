@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../../apiConfig";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../../Style/FarmerHomepage.css";
@@ -23,8 +24,8 @@ const FarmerHomepage = () => {
   const fetchData = async () => {
     try {
       const [businessRes, transporterRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/businessmen"),
-        axios.get("http://localhost:8080/api/transporters"),
+        axios.get(`${API_BASE_URL}/api/businessmen`),
+        axios.get(`${API_BASE_URL}/api/transporters`),
       ]);
 
       setBusinessmen(businessRes.data);

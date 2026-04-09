@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../apiConfig";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../Style/ProductDetail.css";
@@ -47,7 +48,7 @@ const ProductDetail = () => {
 
     try {
 
-      await axios.post("http://localhost:8080/meeting/request", meeting);
+      await axios.post(`${API_BASE_URL}/meeting/request`, meeting);
       alert("Meeting Request Sent");
 
     } catch (error) {

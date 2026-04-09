@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../../apiConfig";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -12,20 +13,14 @@ export const PendingOrders = () => {
   const role = user.role;
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    if (role === 'BUSINESSMAN') navigate("/business-dashboard");
-    else if (role === 'TRANSPORTER') navigate("/transporter-dashboard");
-    else navigate("/farmer-dashboard");
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       console.log("Fetching data for userId:", userId, "Role:", role);
       try {
         const [sentRes, receivedRes, notifRes] = await Promise.all([
-          axios.get(`http://localhost:8080/api/meetings/farmer/${userId}`),
-          axios.get(`http://localhost:8080/api/meetings/receiver/${userId}`),
-          axios.get(`http://localhost:8080/api/notifications/user/${userId}`)
+          axios.get(`${API_BASE_URL}/api/meetings/farmer/${userId}`),
+          axios.get(`${API_BASE_URL}/api/meetings/receiver/${userId}`),
+          axios.get(`${API_BASE_URL}/api/notifications/user/${userId}`)
         ]);
 
         console.log("Sent Requests:", sentRes.data);
@@ -53,7 +48,7 @@ export const PendingOrders = () => {
         // Mark unread notifications as read
         const unread = (notifRes.data || []).filter(n => !n.read);
         if (unread.length > 0) {
-          await Promise.all(unread.map(n => axios.put(`http://localhost:8080/api/notifications/read/${n.id}`)));
+          await Promise.all(unread.map(n => axios.put(`${API_BASE_URL}/api/notifications/read/${n.id}`)));
         }
       } catch (error) {
         console.error("Error fetching data:", error);

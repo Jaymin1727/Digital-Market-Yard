@@ -1,3 +1,4 @@
+import API_BASE_URL from "../apiConfig";
 import React, { useState } from "react";
 import ParticlesBackground from "./ParticlesBackground";
 import "../Style/Login.css";
@@ -27,7 +28,7 @@ export const Login = () => {
         }
 
         try {
-            const result = await axios.post("http://localhost:8080/api/login", { email, password });
+            const result = await axios.post(`${API_BASE_URL}/api/login`, { email, password });
             const loggedInUser = result.data;
 
             if (loggedInUser.role !== role) {

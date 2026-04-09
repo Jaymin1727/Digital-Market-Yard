@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../apiConfig";
 import React from 'react'
 
 import { useEffect, useState } from "react";

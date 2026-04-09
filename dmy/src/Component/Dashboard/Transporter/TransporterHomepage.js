@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../../apiConfig";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -19,8 +20,8 @@ const TransporterHomepage = () => {
   const fetchData = async () => {
     try {
       const [farmerRes, businessRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/farmers"),
-        axios.get("http://localhost:8080/api/businessmen"),
+        axios.get(`${API_BASE_URL}/api/farmers`),
+        axios.get(`${API_BASE_URL}/api/businessmen`),
       ]);
 
       setFarmers(farmerRes.data);

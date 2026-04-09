@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import API_BASE_URL from "../../../apiConfig";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "../../../Style/AddProduct.css";
 import { useNavigate } from "react-router-dom";
@@ -21,16 +22,16 @@ export const AddProduct = () => {
   const [editId, setEditId] = useState(null);
 
   // FETCH PRODUCTS
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/products/user/${userId}`
+        `${API_BASE_URL}/products/user/${userId}`
       );
       setProducts(res.data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     if (!userId) {
@@ -39,7 +40,7 @@ export const AddProduct = () => {
       return;
     }
     fetchProducts();
-  }, [userId]);
+  }, [userId, fetchProducts, navigate]);
 
   // INPUT CHANGE
   const handleChange = (e) => {
@@ -60,7 +61,7 @@ export const AddProduct = () => {
 
         // UPDATE PRODUCT
         await axios.put(
-          `http://localhost:8080/products/${editId}`,
+          `${API_BASE_URL}/products/${editId}`,
           {
             productName: product.productName,
             quantity: Number(product.quantity),
@@ -75,7 +76,7 @@ export const AddProduct = () => {
 
         // ADD PRODUCT
         await axios.post(
-          `http://localhost:8080/products/add/${userId}`,
+          `${API_BASE_URL}/products/add/${userId}`,
           {
             productName: product.productName,
             quantity: Number(product.quantity),
@@ -110,7 +111,7 @@ export const AddProduct = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8080/products/${productId}`
+        `${API_BASE_URL}/products/${productId}`
       );
 
       fetchProducts();
@@ -228,14 +229,13 @@ export const AddProduct = () => {
                     </tr>
                   ))}
               </tbody>
-              <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <button className="submit-btn" onClick={() => navigate("/farmer-dashboard")}>
-                  ⬅ Back to Dashboard
-                </button>
-              </div>
-
             </table>
           )}
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <button className="submit-btn" onClick={() => navigate("/farmer-dashboard")}>
+              ⬅ Back to Dashboard
+            </button>
+          </div>
         </div>
 
       </div>

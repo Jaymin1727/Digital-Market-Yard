@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import API_BASE_URL from "../../apiConfig";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 const Profile = () => {
@@ -9,15 +10,11 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       if (!userId) return;
       const res = await axios.get(
-        `http://localhost:8080/api/profile/${userId}`
+        `${API_BASE_URL}/api/profile/${userId}`
       );
       const data = res.data;
       if (!data.description) data.description = ""; // Initialize description
@@ -25,7 +22,11 @@ const Profile = () => {
     } catch (err) {
       console.error("Failed to fetch profile", err);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   const handleChange = (e) => {
     setUser({
@@ -52,7 +53,7 @@ const Profile = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/profile/${userId}`,
+        `${API_BASE_URL}/api/profile/${userId}`,
         formData,
         {
           headers: {
@@ -84,7 +85,7 @@ const Profile = () => {
       <div style={{ position: "relative", display: "inline-block" }}>
         {user.profilePic ? (
           <img
-            src={`http://localhost:8080/uploads/${user.profilePic}`}
+            src={`${API_BASE_URL}/uploads/${user.profilePic}`}
             alt="profile"
             style={{ width: "130px", height: "130px", borderRadius: "50%", objectFit: "cover", marginBottom: "15px", border: "3px solid #007bff", padding: "3px" }}
           />

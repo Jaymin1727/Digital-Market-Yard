@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../apiConfig";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import axios from "axios";
@@ -13,7 +14,7 @@ const ScheduleMeeting = ({ onClose, user }) => {
   const handleSubmit = async () => {
     try {
 
-      await axios.post("http://localhost:8080/api/meetings", {
+      await axios.post(`${API_BASE_URL}/api/meetings`, {
         farmerId: farmerId,
         receiverId: user.id,
         meetingTime: selectedDate

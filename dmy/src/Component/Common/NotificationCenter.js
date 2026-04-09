@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../apiConfig";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';

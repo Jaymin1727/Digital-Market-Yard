@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import API_BASE_URL from "../../../apiConfig";
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../Style/AddProduct.css'; // Reusing styles
@@ -12,21 +13,21 @@ const ProductDetail = () => {
   const [soldProducts, setSoldProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchSoldProducts = async () => {
+  const fetchSoldProducts = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/products/user/${userId}`);
+      const res = await axios.get(`${API_BASE_URL}/products/user/${userId}`);
       setSoldProducts(res.data.filter(p => p.status === "SOLD"));
     } catch (error) {
       console.error("Error fetching sold products:", error);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         if (id) {
-          const res = await axios.get(`http://localhost:8080/products/${id}`);
+          const res = await axios.get(`${API_BASE_URL}/products/${id}`);
           setProduct(res.data);
         } else {
           setProduct(null);
@@ -39,11 +40,11 @@ const ProductDetail = () => {
       }
     };
     fetchData();
-  }, [id, userId]);
+  }, [id, fetchSoldProducts]);
 
   const handleConfirm = async () => {
     try {
-      await axios.put(`http://localhost:8080/products/sold/${id}`);
+      await axios.put(`${API_BASE_URL}/products/sold/${id}`);
       alert("Product marked as sold successfully! ✅");
       const updatedProduct = { ...product, status: "SOLD" };
       setProduct(updatedProduct);
