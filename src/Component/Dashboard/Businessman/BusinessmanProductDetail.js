@@ -15,7 +15,7 @@ const BusinessmanProductDetail = () => {
 
   const fetchSoldProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/products/user/${userId}`);
+      const res = await axios.get(`${API_BASE_URL}/products/user/${userId}`);
       setSoldProducts(res.data.filter(p => p.status === "SOLD"));
     } catch (error) {
       console.error("Error fetching sold products:", error);
@@ -27,7 +27,7 @@ const BusinessmanProductDetail = () => {
       setLoading(true);
       try {
         if (id) {
-          const res = await axios.get(`http://localhost:8080/products/${id}`);
+          const res = await axios.get(`${API_BASE_URL}/products/${id}`);
           setProduct(res.data);
         } else {
           setProduct(null);
@@ -45,7 +45,7 @@ const BusinessmanProductDetail = () => {
 
   const handleConfirm = async () => {
     try {
-      await axios.put(`http://localhost:8080/products/sold/${id}`);
+      await axios.put(`${API_BASE_URL}/products/sold/${id}`);
       alert("Product marked as sold successfully! ✅");
       const updatedProduct = { ...product, status: "SOLD" };
       setProduct(updatedProduct);

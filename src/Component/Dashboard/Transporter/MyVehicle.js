@@ -25,7 +25,7 @@ const MyVehicle = () => {
   // FETCH VEHICLES
   const fetchVehicles = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/vehicles/user/${userId}`);
+      const res = await axios.get(`${API_BASE_URL}/vehicles/user/${userId}`);
       setVehicles(res.data);
     } catch (error) {
       console.error("Fetch error:", error);
@@ -52,14 +52,14 @@ const MyVehicle = () => {
     setLoading(true);
     try {
       if (editId) {
-        await axios.put(`http://localhost:8080/vehicles/${editId}`, {
+        await axios.put(`${API_BASE_URL}/vehicles/${editId}`, {
           ...vehicle,
           capacity: vehicle.capacity ? Number(vehicle.capacity) : null,
         });
         alert("Vehicle Updated Successfully ✅");
         setEditId(null);
       } else {
-        await axios.post(`http://localhost:8080/vehicles/add/${userId}`, {
+        await axios.post(`${API_BASE_URL}/vehicles/add/${userId}`, {
           ...vehicle,
           capacity: vehicle.capacity ? Number(vehicle.capacity) : null,
         });
@@ -79,7 +79,7 @@ const MyVehicle = () => {
   const handleDelete = async (vehicleId) => {
     if (!window.confirm("Delete this vehicle?")) return;
     try {
-      await axios.delete(`http://localhost:8080/vehicles/${vehicleId}`);
+      await axios.delete(`${API_BASE_URL}/vehicles/${vehicleId}`);
       fetchVehicles();
     } catch (error) {
       console.error("Delete error:", error);

@@ -6,7 +6,7 @@ const MeetingCard = ({ meeting, onAction }) => {
 
   const acceptMeeting = async () => {
     await axios.post(
-      `http://localhost:8080/api/meetings/accept/${meeting.id}`
+      `${API_BASE_URL}/api/meetings/accept/${meeting.id}`
     );
     alert("Meeting Accepted");
     if (onAction) onAction();
@@ -14,7 +14,7 @@ const MeetingCard = ({ meeting, onAction }) => {
 
   const rejectMeeting = async () => {
     await axios.post(
-      `http://localhost:8080/api/meetings/reject/${meeting.id}`
+      `${API_BASE_URL}/api/meetings/reject/${meeting.id}`
     );
     alert("Meeting Rejected");
     if (onAction) onAction();

@@ -19,13 +19,13 @@ const ProductDetail = () => {
   useEffect(() => {
 
     // get product detail
-    axios.get(`http://localhost:8080/products/${id}`)
+    axios.get(`${API_BASE_URL}/products/${id}`)
       .then(res => {
         setProduct(res.data);
       });
 
     // get product statistics (you need backend api)
-    axios.get(`http://localhost:8080/products/stats/${id}`)
+    axios.get(`${API_BASE_URL}/products/stats/${id}`)
       .then(res => {
         setStats(res.data);
       })

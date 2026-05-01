@@ -69,7 +69,7 @@ const FarmerHomepage = () => {
 
                 <div className="card-top">
                   {b.profilePic ? (
-                    <img className="profile-photo" src={`http://localhost:8080/uploads/${b.profilePic}`} alt="profile" />
+                    <img className="profile-photo" src={`${API_BASE_URL}/uploads/${b.profilePic}`} alt="profile" />
                   ) : (
                     <div className="profile-photo"></div>
                   )}
@@ -105,7 +105,7 @@ const FarmerHomepage = () => {
 
                 <div className="card-top">
                   {t.profilePic ? (
-                    <img className="profile-photo" src={`http://localhost:8080/uploads/${t.profilePic}`} alt="profile" />
+                    <img className="profile-photo" src={`${API_BASE_URL}/uploads/${t.profilePic}`} alt="profile" />
                   ) : (
                     <div className="profile-photo"></div>
                   )}

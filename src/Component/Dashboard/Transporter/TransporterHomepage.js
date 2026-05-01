@@ -62,7 +62,7 @@ const TransporterHomepage = () => {
                 <div className="farmer-card" key={f.id}>
                   <div className="card-top">
                     {f.profilePic ? (
-                      <img className="profile-photo" src={`http://localhost:8080/uploads/${f.profilePic}`} alt="profile" style={{ objectFit: "cover" }} />
+                      <img className="profile-photo" src={`${API_BASE_URL}/uploads/${f.profilePic}`} alt="profile" style={{ objectFit: "cover" }} />
                     ) : (
                       <div className="profile-photo"></div>
                     )}
@@ -93,7 +93,7 @@ const TransporterHomepage = () => {
                 <div className="farmer-card" key={b.id}>
                   <div className="card-top">
                     {b.profilePic ? (
-                      <img className="profile-photo" src={`http://localhost:8080/uploads/${b.profilePic}`} alt="profile" style={{ objectFit: "cover" }} />
+                      <img className="profile-photo" src={`${API_BASE_URL}/uploads/${b.profilePic}`} alt="profile" style={{ objectFit: "cover" }} />
                     ) : (
                       <div className="profile-photo"></div>
                     )}

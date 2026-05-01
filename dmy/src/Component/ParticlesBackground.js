@@ -26,7 +26,7 @@ const ParticlesBackground = () => {
                         value: 100
                     },
                     color: {
-                        value: "#0F172A" // green theme 🌿
+                        value: "#0F172A" 
                     },
                     links: {
                         enable: true,

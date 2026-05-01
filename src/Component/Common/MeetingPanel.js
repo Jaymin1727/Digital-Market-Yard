@@ -18,7 +18,7 @@ const MeetingPanel = () => {
   const fetchMeetings = async () => {
 
     const res = await axios.get(
-      `http://localhost:8080/api/meetings/receiver/${userId}`
+      `${API_BASE_URL}/api/meetings/receiver/${userId}`
     );
 
     setMeetings(res.data);

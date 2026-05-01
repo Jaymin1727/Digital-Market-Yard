@@ -84,7 +84,7 @@ const BusinessmanHomepage = () => {
                 <div className="card-top">
 
                   {f.profilePic ? (
-                    <img className="profile-photo" src={`http://localhost:8080/uploads/${f.profilePic}`} alt="profile" />
+                    <img className="profile-photo" src={`${API_BASE_URL}/uploads/${f.profilePic}`} alt="profile" />
                   ) : (
                     <div className="profile-photo"></div>
                   )}
@@ -130,7 +130,7 @@ const BusinessmanHomepage = () => {
                 <div className="card-top">
 
                   {t.profilePic ? (
-                    <img className="profile-photo" src={`http://localhost:8080/uploads/${t.profilePic}`} alt="profile" />
+                    <img className="profile-photo" src={`${API_BASE_URL}/uploads/${t.profilePic}`} alt="profile" />
                   ) : (
                     <div className="profile-photo"></div>
                   )}

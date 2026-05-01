@@ -11,7 +11,7 @@ const AssignedVehicle = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/vehicles/user/${userId}`)
+    axios.get(`${API_BASE_URL}/vehicles/user/${userId}`)
       .then(res => {
         setBusyVehicles(res.data.filter(v => v.status === "BUSY"));
       })
@@ -49,10 +49,10 @@ const AssignedVehicle = () => {
                 <tbody>
                   {busyVehicles.map((v) => (
                     <tr key={v.id}>
-                      <td>{v.vehicleName}</td>
-                      <td>{v.vehicleType}</td>
-                      <td>{v.plateNumber || "—"}</td>
-                      <td>{v.capacity || "—"}</td>
+                      <td style={{color:"black"}}>{v.vehicleName}</td>
+                      <td style={{color:"black"}}>{v.vehicleType}</td>
+                      <td style={{color:"black"}}>{v.plateNumber || "—"}</td>
+                      <td style={{color:"black"}}>{v.capacity || "—"}</td>
                       <td>
                         <span style={{ color: "orange", fontWeight: "bold" }}>
                           {v.status}

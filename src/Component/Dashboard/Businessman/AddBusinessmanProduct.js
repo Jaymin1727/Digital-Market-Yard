@@ -25,7 +25,7 @@ export const AddBusinessmanProduct = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/products/user/${userId}`
+        `${API_BASE_URL}/products/user/${userId}`
       );
       setProducts(res.data);
     } catch (error) {
@@ -62,7 +62,7 @@ export const AddBusinessmanProduct = () => {
 
         // UPDATE PRODUCT
         await axios.put(
-          `http://localhost:8080/products/${editId}`,
+          `${API_BASE_URL}/products/${editId}`,
           {
             productName: product.productName,
             quantity: Number(product.quantity),
@@ -77,7 +77,7 @@ export const AddBusinessmanProduct = () => {
 
         // ADD PRODUCT
         await axios.post(
-          `http://localhost:8080/products/add/${userId}`,
+          `${API_BASE_URL}/products/add/${userId}`,
           {
             productName: product.productName,
             quantity: Number(product.quantity),
@@ -112,7 +112,7 @@ export const AddBusinessmanProduct = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8080/products/${productId}`
+        `${API_BASE_URL}/products/${productId}`
       );
 
       fetchProducts();
